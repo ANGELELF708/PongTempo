@@ -1,7 +1,9 @@
-PONG game
+PONG TEMPO
 =========
 
-A simple pong game made with Godot 4.0
+A simple modded pong game that adds upgrades. The original fork is not mine. 
+
+The 2 player mode is still under development
 
 License
 -------
