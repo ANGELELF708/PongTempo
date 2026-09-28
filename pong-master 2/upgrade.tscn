@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bfx8q8wdwvnu5"]
+
+[ext_resource type="Script" uid="uid://c8lt11fm380wp" path="res://upgrade.gd" id="1_hgitt"]
+[ext_resource type="FontFile" uid="uid://d25gup1gitbru" path="res://ui/fonts/blippo_light_sf.ttf" id="1_w52ek"]
+
+[node name="upgrade" type="Control" unique_id=1023605983]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hgitt")
+
+[node name="frame" type="ReferenceRect" parent="." unique_id=230332663]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 288.0
+offset_bottom = 208.0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="title" type="Label" parent="." unique_id=1741813468]
+layout_mode = 0
+offset_left = 56.0
+offset_top = -8.0
+offset_right = 264.0
+offset_bottom = 35.0
+theme_override_colors/font_outline_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("1_w52ek")
+theme_override_font_sizes/font_size = 32
+text = "u p g r a d e"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="VBoxContainer" parent="." unique_id=737772487]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 64.0
+offset_right = 240.0
+offset_bottom = 168.0
+theme_override_constants/separation = 16
+
+[node name="upgrade_one" type="Button" parent="buttons" unique_id=1309873553]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrade One"
+
+[node name="upgrade_two" type="Button" parent="buttons" unique_id=1867197765]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrade Two"
+
+[node name="upgrade_three" type="Button" parent="buttons" unique_id=499496512]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrade Three"

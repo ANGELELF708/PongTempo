@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bmcd3s1o4s37w"]
+
+[ext_resource type="Script" uid="uid://cdsurukc3aosa" path="res://stage/stage.gd" id="1_et3jd"]
+[ext_resource type="Texture2D" uid="uid://xibhhuqx3v86" path="res://stage/textures/dash.png" id="2_p7618"]
+[ext_resource type="PackedScene" uid="uid://tlsgx31p3s7l" path="res://paddle/paddle.tscn" id="3_kyxba"]
+[ext_resource type="PackedScene" uid="uid://cns3jgjcu10aq" path="res://ball/ball.tscn" id="4_05s6g"]
+[ext_resource type="PackedScene" uid="uid://cui2hs6ihf0aw" path="res://paddle/paddle_cpu.tscn" id="4_wbt75"]
+[ext_resource type="PackedScene" uid="uid://dypslu8krscej" path="res://goal/goal.tscn" id="5_l04lm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od51l"]
+size = Vector2(224, 16)
+
+[node name="stage" type="Node2D" unique_id=17199321]
+script = ExtResource("1_et3jd")
+
+[node name="divider" type="Polygon2D" parent="." unique_id=1448087599]
+self_modulate = Color(1, 1, 1, 0.25)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(158, 0)
+texture = ExtResource("2_p7618")
+polygon = PackedVector2Array(0, 16, 0, 208, 4, 208, 4, 16)
+
+[node name="walls" type="StaticBody2D" parent="." unique_id=724066612]
+position = Vector2(160, 112)
+collision_layer = 4
+collision_mask = 3
+
+[node name="polygon" type="Polygon2D" parent="walls" unique_id=599552113]
+position = Vector2(-160, -112)
+texture = ExtResource("2_p7618")
+invert_enabled = true
+invert_border = 2.0
+polygon = PackedVector2Array(48, 208, 48, 16, 272, 16, 272, 208)
+
+[node name="high_wall" type="CollisionShape2D" parent="walls" unique_id=1706708743]
+position = Vector2(0, -104)
+shape = SubResource("RectangleShape2D_od51l")
+
+[node name="low_wall" type="CollisionShape2D" parent="walls" unique_id=2081686956]
+position = Vector2(0, 104)
+shape = SubResource("RectangleShape2D_od51l")
+
+[node name="paddle_one" parent="." unique_id=1930803181 instance=ExtResource("3_kyxba")]
+position = Vector2(64, 112)
+player = 0
+
+[node name="paddle_two" parent="." unique_id=1136353410 instance=ExtResource("3_kyxba")]
+process_mode = 4
+visible = false
+position = Vector2(256, 112)
+player = 1
+
+[node name="paddle_cpu" parent="." unique_id=407484542 node_paths=PackedStringArray("ball") instance=ExtResource("4_wbt75")]
+position = Vector2(256, 112)
+min_bounds = 32.0
+max_bounds = 192.0
+min_distance_to_ball = 48
+detection_threshhold = 0.33
+ball = NodePath("../ball")
+
+[node name="ball" parent="." unique_id=2030969045 instance=ExtResource("4_05s6g")]
+position = Vector2(160, 112)
+
+[node name="goal_one" parent="." unique_id=587796404 instance=ExtResource("5_l04lm")]
+position = Vector2(56, 112)
+opposite_player = 1
+
+[node name="goal_two" parent="." unique_id=395151970 instance=ExtResource("5_l04lm")]
+position = Vector2(265, 112)
