@@ -8,6 +8,9 @@ func get_axis(player_id: Game.Player) -> float:
 	var prefix = 'p%d_' % (player_id + 1)
 	return Input.get_axis(prefix + 'up', prefix + 'down')
 
+func get_horizontal_axis(player_id: Game.Player) -> float:
+	var prefix = 'p%d_' % (player_id + 1)
+	return Input.get_axis(prefix + 'right', prefix + 'left')
 
 @warning_ignore('narrowing_conversion')
 func get_direction(player_id: Game.Player) -> int:

@@ -1,21 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c52ns4kert6f6"]
+[gd_scene format=3 uid="uid://c52ns4kert6f6"]
 
-[ext_resource type="Script" path="res://main/main.gd" id="1_m3jcy"]
+[ext_resource type="Script" uid="uid://cgvs6hrypiaxb" path="res://main/main.gd" id="1_m3jcy"]
 [ext_resource type="PackedScene" uid="uid://62uv2m0g23xq" path="res://ui/menu/menu.tscn" id="2_3vjek"]
 [ext_resource type="PackedScene" uid="uid://bvkbxsl5jvwgf" path="res://ui/hud/hud.tscn" id="3_ntue6"]
 [ext_resource type="PackedScene" uid="uid://bmcd3s1o4s37w" path="res://stage/stage.tscn" id="4_p3k3f"]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" unique_id=1161289058]
 process_mode = 3
 script = ExtResource("1_m3jcy")
 
-[node name="menu" parent="." instance=ExtResource("2_3vjek")]
+[node name="video_stream_player" type="VideoStreamPlayer" parent="." unique_id=882794527]
+offset_left = -126.0
+offset_top = -56.0
+offset_right = 514.0
+offset_bottom = 304.0
+loop = true
+
+[node name="menu" parent="." unique_id=813215589 instance=ExtResource("2_3vjek")]
 process_mode = 2
 
-[node name="hud" parent="." instance=ExtResource("3_ntue6")]
+[node name="hud" parent="." unique_id=1970111870 instance=ExtResource("3_ntue6")]
 process_mode = 1
 visible = false
 
-[node name="stage" parent="." instance=ExtResource("4_p3k3f")]
+[node name="stage" parent="." unique_id=1151828373 instance=ExtResource("4_p3k3f")]
 process_mode = 1
 visible = false

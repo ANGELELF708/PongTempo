@@ -6,6 +6,7 @@ const SubMenu := {
 	PAUSE = &'pause_menu',
 	SETTINGS = &'settings_menu',
 	GAME_OVER = &'game_over',
+	UPGRADE =  &'upgrade',
 }
 
 @onready

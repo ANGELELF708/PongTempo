@@ -28,8 +28,10 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	var collider = collision.get_collider() if collision else null
 	
-	if collider is Paddle or collider is PaddleCpu:
-		_bounce_off_paddle(collider)
+	if collider is Paddle:
+		_bounce_off_player_paddle(collider)
+	elif collider is PaddleCpu:
+		_bounce_off_cpu_paddle(collider)
 	elif collider:
 		_bounce_off_wall(collision)
 
@@ -47,8 +49,18 @@ func reset_speed_and_position() -> void:
 func _bounce_off_wall(collision: KinematicCollision2D) -> void:
 	velocity = velocity.bounce(collision.get_normal())
 
-
-func _bounce_off_paddle(paddle: Node2D) -> void:
+#player paddle multiplies players power to it acceleration
+func _bounce_off_player_paddle(paddle: Node2D) -> void:
+	var paddle_position = paddle.global_position
+	var direction_to_ball = paddle_position.direction_to(global_position)
+	
+	var current_direction = velocity.normalized()
+	var updated_direction = (direction_to_ball - current_direction).normalized()
+	
+	current_speed = min(current_speed + acceleration, max_speed)
+	velocity = (updated_direction * current_speed) * Game.power
+	
+func _bounce_off_cpu_paddle(paddle: Node2D) -> void:
 	var paddle_position = paddle.global_position
 	var direction_to_ball = paddle_position.direction_to(global_position)
 	
@@ -57,7 +69,6 @@ func _bounce_off_paddle(paddle: Node2D) -> void:
 	
 	current_speed = min(current_speed + acceleration, max_speed)
 	velocity = updated_direction * current_speed
-
 
 func _randomize_direction() -> void:
 	var random_direction = Vector2()
